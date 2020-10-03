@@ -9,7 +9,7 @@ export const ContainerTextInput = styled.div`
 `;
 
 export const Title = styled.span`
-  font-size: 14px;
+  font-size: 26px;
   color: ${props => props.disabled ? 'grey' : Colors.primaryPurple};
   margin-bottom: 8px;
 `;

@@ -10,7 +10,7 @@ export const Main = styled.div`
 
 export const Roxo = styled.div`
     display: flex;
-    flex: 7;
+    flex: 6.5;
     background: #685AA4;
 
     justify-content: center;
@@ -19,7 +19,7 @@ export const Roxo = styled.div`
 
 export const Branco = styled.div`
     display: flex;
-    flex: 3;
+    flex: 3.5;
     background: #FFFFFF;
 
     justify-content: space-around;
@@ -28,4 +28,7 @@ export const Branco = styled.div`
 `;
 
 export const Inputs = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;

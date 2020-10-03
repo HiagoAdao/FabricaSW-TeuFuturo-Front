@@ -1,5 +1,6 @@
 import React from 'react';
-import Button from '../../components/Button/Button';
+// import Button from '../../components/Button/Button';
+import {Button} from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import { Main, Roxo, Branco, Inputs } from './styles';
 import InputStyled from '../../components/TextInput/index';
@@ -20,7 +21,14 @@ const styles = {
       fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
       marginBottom: "3px",
       textDecoration: "none"
-    }
+    },
+    botao: {
+      background: "#09C774", 
+      width: 340, 
+      height: 60, 
+      borderRadius: 54, 
+      fontWeight: 'bold'
+    },
 };  
 
 const useStyles = makeStyles(styles);
@@ -39,9 +47,11 @@ const Login = () => {
               </div>
 
               <Inputs>
-                <InputStyled item={{titulo: 'Usuario'}}></InputStyled>
+                <InputStyled item={{titulo: 'Usuário'}}></InputStyled>
                 <InputStyled item={{titulo: 'Senha'}}></InputStyled>
-                <Button title="Entrar">Entrar</Button>
+                <Button variant="containedPrimary" style={styles.botao} disableElevation>
+                  Entrar
+                </Button>
               </Inputs>
             </Branco>
           </Main>
