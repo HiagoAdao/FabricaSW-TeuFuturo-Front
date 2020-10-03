@@ -4,6 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
+/material-dashboard-react-master
+/assets
+/material-dashboard-react-master.zip
+/Rascunho.txt
 
 # testing
 /coverage
