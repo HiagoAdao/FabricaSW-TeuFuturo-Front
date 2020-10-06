@@ -1,4 +1,4 @@
-from flask import jsonify, make_response
+from teu_futuro.responses import Responses
 from ..util.date import converte_str_para_datetime, Formatos
 from ..services.turma import TurmaService
 from ..schemas.turma import TurmaSchema
@@ -10,7 +10,7 @@ class TurmaController:
         turma_service = TurmaService()
         resp = [TurmaSchema().load(turma)
                 for turma in turma_service.obter_turmas()]
-        return make_response(jsonify(resp), 200)
+        return Responses.success(resp)
 
     @staticmethod
     def obter_turma(turma_id):
@@ -19,7 +19,7 @@ class TurmaController:
             return "Turma inexistente"
         turma = turma_service.obter_turma(turma_id)
         resp = TurmaSchema().load(turma)
-        return make_response(jsonify(resp), 200)
+        return Responses.success(resp)
 
     @staticmethod
     def criar_turma(request_body):
@@ -34,6 +34,6 @@ class TurmaController:
             request_body["alunos"] = []
             dados_turma = TurmaSchema().dump(request_body)
             resp = TurmaService().criar_turma(dados_turma)
-            return make_response(jsonify(resp), 200)
+            return Responses.created(resp)
         except BaseException as err:
-            return make_response(jsonify(err), 400)
+            return Responses.bad_request(err)
