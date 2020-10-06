@@ -1,24 +1,32 @@
 import React, { useState, useEffect, } from 'react';
+import GlobalStyle from './globalStyles';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Header } from './components';
+import Login from './pages/Login/Login';
 
 export default function App() {
 
   const [repositories, setRepositories] = useState([
-    { id: 1, name: 'repo-1' },
-    { id: 2, name: 'repo-2' },
-    { id: 3, name: 'repo-3' }
+    { id: 1, name: 'sala-1' },
+    { id: 2, name: 'sala-2' },
+    { id: 3, name: 'sala-3' }
   ]);
 
-  useEffect(async () => {
-    const response = await fetch('https://api.github.com/');
-    const data = await response.json();
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('https://api.github.com/');
+      const data = await response.json();
+      console.log(data);
+    }
 
+    fetchData();
     // setRepositories(data);    
   }, []); // Vazio indica ComponentDidMount
 
   useEffect(() => {
     const filtered = repositories.filter(repo => repo.favorite);
 
-    document.title = `Você tem ${filtered.length} favoritos`
+    document.title = `#TeuFuturo`
   }, [repositories]);
 
   function handleAddRepository() {
@@ -26,7 +34,7 @@ export default function App() {
       ...repositories,
       { id: Math.random(), name: 'Novo repo' }
     ]);
-  }
+  };
 
   function handleFavorite(id) {
     const newRepositories = repositories.map(repo => {
@@ -34,23 +42,29 @@ export default function App() {
     })
 
     setRepositories(newRepositories);
-  }
+  };
 
   return (
-    <>
-      <h1>#TeuFuturo</h1>
-      <ul>
-        {repositories.map(repo => (
-          <li key={repo.id}>
-            {repo.name}
-            {repo.favorite && <span>(Favorito)</span>}
-            <button onClick={() => handleFavorite(repo.id)}>Favoritar</button>
-          </li>
-        ))}
-      </ul>
-      <button onClick={handleAddRepository}>
-        Adicionar repositório
-      </button>
-    </>
+    <Router>
+      <GlobalStyle />
+      {/* <Header /> */}
+      <Switch>
+        <Route path="/" exact component={Login} />
+      </Switch>
+    </Router>
   );
 }
+
+{/* <h1>#TeuFuturo</h1>
+<ul>
+  {repositories.map(repo => (
+    <li key={repo.id}>
+      {repo.name}
+      {repo.favorite && <span>(Favorito)</span>}
+      <button onClick={() => handleFavorite(repo.id)}>Favoritar</button>
+    </li>
+  ))}
+</ul>
+<button onClick={handleAddRepository}>
+  Adicionar repositório
+</button> */}
