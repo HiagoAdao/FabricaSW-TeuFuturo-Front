@@ -9,7 +9,7 @@ class TurmaService:
 
     def obter_turma(self, turma_id):
         try:
-            return TURMAS[turma_id]
+            return TURMAS[turma_id - 1]
         except BaseException as err:
             print(err)
             return "Turma Inexistente"
