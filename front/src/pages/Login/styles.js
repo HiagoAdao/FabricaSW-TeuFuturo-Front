@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from '@material-ui/core';
 import { Colors } from "../../theme/Colors";
 
 export const Main = styled.div`
@@ -31,4 +32,12 @@ export const Inputs = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+`;
+
+export const CustomButton = styled(Button)`
+    background-color: #09C774;
+    width: 340px;
+    height: 60px;
+    border-radius: 54px;
+    font-weight: bold;
 `;

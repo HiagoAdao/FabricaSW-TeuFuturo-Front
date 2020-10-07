@@ -2,7 +2,8 @@ import React, { useState, useEffect, } from 'react';
 import GlobalStyle from './globalStyles';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Header } from './components';
-import Login from './pages/Login/Login';
+import Login from './pages/Login';
+import Admin from './pages/Admin';
 
 export default function App() {
 
@@ -50,6 +51,7 @@ export default function App() {
       {/* <Header /> */}
       <Switch>
         <Route path="/" exact component={Login} />
+        <Route path="/admin" exact component={Admin} />
       </Switch>
     </Router>
   );
