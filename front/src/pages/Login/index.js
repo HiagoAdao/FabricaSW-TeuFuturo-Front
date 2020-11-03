@@ -41,7 +41,7 @@ const Login = (props) => {
 
         <Inputs>
           <InputStyled item={{ titulo: 'Usuário' }}></InputStyled>
-          <InputStyled item={{ titulo: 'Senha' }}></InputStyled>
+          <InputStyled item={{ titulo: 'Senha', password: true }}></InputStyled>
           <StyledButton
             variant="containedPrimary"
             disableElevation

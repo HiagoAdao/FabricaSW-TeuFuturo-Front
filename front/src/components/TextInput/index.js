@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
-  ContainerTextInput, Title,
+  ContainerTextInput, 
+  Title,
   ContainerInput, 
   ErrorMessage,
 } from "./index.styled";
@@ -9,7 +10,7 @@ import PropTypes from "prop-types";
 
 const InputStyled = ({item, onInputChange, disabled, size}) => {
   const [isFocused, setIsFocused] = useState(false);
-  const {titulo, invalidacao, mensagemErro} = item;
+  const {titulo, invalidacao, mensagemErro, password} = item;
 
   const masks = {
     // "value": createNumberMask({
@@ -57,7 +58,8 @@ const InputStyled = ({item, onInputChange, disabled, size}) => {
           ? '#232323'
           : 'grey'}
         disabled={disabled}
-        size={size}>
+        size={size}
+        type={password ? 'password' : 'text'}>
       </ContainerInput>
       {
         invalidacao &&
