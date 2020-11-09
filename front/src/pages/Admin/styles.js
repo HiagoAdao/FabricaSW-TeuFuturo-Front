@@ -48,3 +48,14 @@ export const styledLi = styled.div`
     border-color: #123421;
     border-width: 1px;
 `;
+
+export const Titulo = styled.h1`
+    align-self: flex-start;
+
+    color: #685AA4;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 24px;
+
+    padding-left: 48px;
+`;

@@ -14,11 +14,12 @@ export const Title = styled.span`
   margin-bottom: 8px;
 `;
 
-export const ContainerInput = styled.div`
+export const ContainerInput = styled.input`
   display: flex;
   align-items: center;
   flex-flow: nowrap row;
   width: ${props => props.size || "542px"};
+  padding-left: 8px;
   height: 34px;
   border: 1px solid ${({borderColor}) => borderColor};
   background-color: ${props => props.disabled ? 'grey' : '#FFF'};
