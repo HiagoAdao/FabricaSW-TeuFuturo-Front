@@ -13,10 +13,11 @@ app = ConfigurationManager.inicializar()
 @app.route("/teste")
 def get_teste():
     from flask import jsonify, make_response
-    from teu_futuro_db import EscolaDAO
-    dao = EscolaDAO()
+    from teu_futuro_db import AlunoDAO
+    dao = AlunoDAO()
+    response = dao.obter_todos()
     return make_response(
-        jsonify(dict(status='success', data=dao.obter_todos())),
+        jsonify(dict(status='success', data=response)),
         200
     )
 
