@@ -1,4 +1,4 @@
-from ..mappings.escola import Escola
+from ..models.escola import Escola
 from ..factory.db_injection import injetar_db
 
 
@@ -19,4 +19,4 @@ class EscolaDAO:
             results = list(map(lambda es: es.to_dict(), Escola.select()))
             return results
         except BaseException as e:
-            raise EscolaDAOException(f"Error em VerbasBo.obter_todos: {e}")
+            raise EscolaDAOException(f"Error em EscolaDAO.obter_todos: {e}")

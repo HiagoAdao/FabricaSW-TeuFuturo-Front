@@ -1,4 +1,4 @@
-from peewee import AutoField, TextField, Model
+from peewee import Model, AutoField, TextField
 
 
 class Escola(Model):
