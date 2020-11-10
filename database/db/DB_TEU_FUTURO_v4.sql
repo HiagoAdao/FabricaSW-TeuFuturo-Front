@@ -22,7 +22,7 @@ create table ALUNO
         foreign key (ESCOLA_ID) references ESCOLA(ID),
     constraint FK_ALUNO_ANO_ENSINO_MEDIO
         foreign key (ANO_ENSINO_MEDIO_ID) references ANO_ENSINO_MEDIO(ID),
-    constraint FK_ATIVIDADE_TURMA
+    constraint FK_ALUNO_TURMA
         foreign key (TURMA_ID) references TURMA(ID)
 );
 
