@@ -15,12 +15,15 @@ create table ALUNO
     SPONSOR_ID int unsigned not null,
     ESCOLA_ID int unsigned not null,
     ANO_ENSINO_MEDIO_ID int unsigned not null,
+    TURMA_ID int unsigned not null,
     constraint FK_ALUNO_SPONSOR
         foreign key (SPONSOR_ID) references SPONSOR(ID),
     constraint FK_ALUNO_ESCOLA
         foreign key (ESCOLA_ID) references ESCOLA(ID),
     constraint FK_ALUNO_ANO_ENSINO_MEDIO
-        foreign key (ANO_ENSINO_MEDIO_ID) references ANO_ENSINO_MEDIO(ID)
+        foreign key (ANO_ENSINO_MEDIO_ID) references ANO_ENSINO_MEDIO(ID),
+    constraint FK_ATIVIDADE_TURMA
+        foreign key (TURMA_ID) references TURMA(ID)
 );
 
 create table ATIVIDADE

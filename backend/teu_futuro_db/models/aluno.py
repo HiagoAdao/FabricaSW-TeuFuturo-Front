@@ -5,6 +5,7 @@ from peewee import (
 from .sponsor import Sponsor
 from .escola import Escola
 from .ano_ensino_medio import AnoEnsinoMedio
+from .turma import Turma
 
 
 class Aluno(Model):
@@ -28,6 +29,11 @@ class Aluno(Model):
         column_name="ANO_ENSINO_MEDIO_ID",
         backref="alunos"
     )
+    turma = ForeignKeyField(
+        Turma,
+        column_name="TURMA_ID",
+        to_field="id"
+    )
 
     def to_dict(self):
         return dict(
@@ -38,7 +44,8 @@ class Aluno(Model):
             inativo=self.inativo,
             sponsor=self.sponsor.to_dict(),
             escola=self.escola.to_dict(),
-            ano_ensino_medio=self.ano_ensino_medio.to_dict()
+            ano_ensino_medio=self.ano_ensino_medio.to_dict(),
+            turma=self.turma.to_dict()
         )
 
     @staticmethod
