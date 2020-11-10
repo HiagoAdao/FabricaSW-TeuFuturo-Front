@@ -1,7 +1,7 @@
 from os import environ
 from flask import Flask
 from flask_cors import CORS
-from teu_futuro_db import ConfiguradorDB
+from teu_futuro import ConfiguradorDB
 
 
 class ConfigBase:

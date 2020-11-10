@@ -3,7 +3,8 @@ from teu_futuro import (
     TurmaController,
     ProfessorController,
     AlunoController,
-    AtividadeController
+    AtividadeController,
+    AlunoDAO
 )
 from config import ConfigurationManager
 
@@ -13,7 +14,6 @@ app = ConfigurationManager.inicializar()
 @app.route("/teste")
 def get_teste():
     from flask import jsonify, make_response
-    from teu_futuro_db import AlunoDAO
     dao = AlunoDAO()
     response = dao.obter_todos()
     return make_response(
