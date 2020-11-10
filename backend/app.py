@@ -1,14 +1,24 @@
-from flask import Flask, request
-from flask_cors import CORS
+from flask import request
 from teu_futuro import (
     TurmaController,
     ProfessorController,
     AlunoController,
     AtividadeController
 )
+from config import ConfigurationManager
 
-app = Flask(__name__)
-CORS(app)
+app = ConfigurationManager.inicializar()
+
+
+@app.route("/teste")
+def get_teste():
+    from flask import jsonify, make_response
+    from teu_futuro_db import EscolaDAO
+    dao = EscolaDAO()
+    return make_response(
+        jsonify(dict(status='success', data=dao.obter_todos())),
+        200
+    )
 
 
 # =============== GETs ===============
@@ -38,7 +48,8 @@ def get_all_atividades(turma_id):
 
 
 # =============== PUTs ===============
-@app.route("/turma/<int:turma_id>/aluno/<int:aluno_id>/inativar", methods=["PUT"])
+@app.route(
+    "/turma/<int:turma_id>/aluno/<int:aluno_id>/inativar", methods=["PUT"])
 def put_inativar_aluno(turma_id, aluno_id):
     return AlunoController.inativar_aluno(turma_id, aluno_id)
 
@@ -60,4 +71,4 @@ def post_atividade_turma(turma_id):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=5000)
