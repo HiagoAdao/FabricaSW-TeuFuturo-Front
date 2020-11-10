@@ -1,4 +1,4 @@
-from peewee import Model, AutoField, TextField, ForeignKeyField
+from peewee import Model, AutoField, TextField, ForeignKeyField, DecimalField
 from .turma import Turma
 
 
@@ -6,7 +6,7 @@ class Atividade(Model):
     id = AutoField()
     nome = TextField(column_name="NOME")
     descricao = TextField(column_name="DESCRICAO")
-    peso = TextField(column_name="PESO")
+    peso = DecimalField(column_name="PESO")
     turma = ForeignKeyField(
         Turma,
         column_name="TURMA_ID",

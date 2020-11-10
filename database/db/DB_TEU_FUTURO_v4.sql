@@ -31,7 +31,7 @@ create table ATIVIDADE
     ID int unsigned auto_increment primary key,
     NOME varchar(125) not null,
     DESCRICAO text not null,
-    PESO int unsigned not null,
+    PESO decimal not null default 0,
     TURMA_ID int unsigned not null,
     constraint FK_ATIVIDADE_TURMA
         foreign key (TURMA_ID) references TURMA(ID)
