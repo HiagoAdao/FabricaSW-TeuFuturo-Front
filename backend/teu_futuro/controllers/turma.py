@@ -8,8 +8,9 @@ class TurmaController:
     @staticmethod
     def obter_todas_turmas():
         turma_service = TurmaService()
+        turmas = turma_service.obter_turmas()
         resp = [TurmaSchema().load(turma)
-                for turma in turma_service.obter_turmas()]
+                for turma in turmas]
         return Responses.success(resp)
 
     @staticmethod
