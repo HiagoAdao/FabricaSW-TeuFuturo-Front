@@ -22,7 +22,6 @@ def injetar_db(parametro: str):
                           type(DbFactoryUtil.factory_base_instance)))
                 kwargs[parametro] = \
                     DbFactoryUtil.factory_base_instance.obter_db()
-            # criando instancia com parametros
             return method_function(cls, **kwargs)
 
         return wrapped

@@ -1,5 +1,5 @@
-from ..models.escola import Escola
 from ..factory.db_injection import injetar_db
+from ..models.escola import Escola
 
 
 class EscolaDAOException(BaseException):
@@ -16,7 +16,7 @@ class EscolaDAO:
 
     def obter_todos(self):
         try:
-            results = list(map(lambda es: es.to_dict(), Escola.select()))
+            results = list(map(lambda e: e.to_dict(), Escola.select()))
             return results
         except BaseException as e:
             raise EscolaDAOException(f"Error em EscolaDAO.obter_todos: {e}")
