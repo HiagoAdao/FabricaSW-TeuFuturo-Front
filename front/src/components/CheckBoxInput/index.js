@@ -4,8 +4,8 @@ import {
 	Container, Title, RadioInput,
 	RadioInputActive
 } from "./index.styled";
-import CheckedImage from "../../icons/icon-checkbox-checked.svg";
-import CheckedDisabledImage from "../../icons/icon-checkbox-checked-disabled.svg";
+import CheckedImage from "../../assets/icons/icon-checkbox-checked.svg";
+import CheckedDisabledImage from "../../assets/icons/icon-checkbox-checked-disabled.svg";
 import PropTypes from "prop-types";
 
 

@@ -1,58 +1,75 @@
-import React from 'react';
-// import Button from '../../components/Button/Button';
-import { makeStyles } from "@material-ui/core/styles";
-import { Main, Roxo, Branco, Inputs } from './styles';
-import InputStyled from '../../components/TextInput/index';
-import {StyledButton} from '../../components';
-
-const styles = {
-  cardCategoryWhite: {
-    color: "rgba(255,255,255,.62)",
-    margin: "0",
-    fontSize: "14px",
-    marginTop: "0",
-    marginBottom: "0"
-  },
-  cardTitleWhite: {
-    color: "#FFFFFF",
-    marginTop: "0px",
-    minHeight: "auto",
-    fontWeight: "300",
-    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-    marginBottom: "3px",
-    textDecoration: "none"
-  },
-};
-
-const useStyles = makeStyles(styles);
+import React, { useState } from "react";
+import ButtonStyled from "../../components/ButtonStyled";
+import TextInput from "../../components/TextInput";
+import { 
+  Container, ContainerLogo,
+  Image, ContainerTitle, Title,
+  SubTitle, ContainerForm,
+  ContainerComponents, ButtonName
+} from "./index.styled";
+import LogoTf from "../../assets/logo-teu-futuro.svg";
+import ImageTf from "../../assets/logo-teu-futuro2.svg";
 
 const Login = (props) => {
-  const classes = useStyles();
-  return (
-    <Main > {/* Roxa 60% */}
-      <Roxo>
-        <h1 style={{ color: '#FFF', fontSize: 96 }}>#TeuFuturo</h1>
-      </Roxo>
-      <Branco> {/* Branca */}
-        <div>
-          <h1 style={{ color: '#232323', marginBottom: 16 }}>Bem-vindo(a)!</h1>
-          <h3 style={{ color: '#79919D' }}>Faça login para iniciar</h3>
-        </div>
+  const [userInput, setUserInput] = useState({
+    titulo: "Usuário",
+    valor: null,
+    invalidacao: false,
+    required: true
+  });
+  const [passwordInput, setPasswordInput] = useState({
+    titulo: "Senha",
+    valor: null,
+    invalidacao: false,
+    required: true
+  });
 
-        <Inputs>
-          <InputStyled item={{ titulo: 'Usuário' }}></InputStyled>
-          <InputStyled item={{ titulo: 'Senha', password: true }}></InputStyled>
-          <StyledButton
-            variant="containedPrimary"
-            disableElevation
-            onClick={() => {props.history.push('/admin')}}
+  return (
+    <Container>
+      <ContainerLogo>
+        <Image 
+          height={"120px"}
+          src={LogoTf}
+          alt={"Logo #TeuFuturo"}
+          title={"Logo #TeuFuturo"}
+        />
+        <Image
+          height={"55px"}
+          src={ImageTf}
+          alt={"#TeuFuturo"}
+          margin={"20px 0 0 49px"}
+        />
+      </ContainerLogo>
+      <ContainerForm>
+        <ContainerTitle>
+          <Title>Bem-vindo(a)!</Title>
+          <SubTitle>Faça login para iniciar</SubTitle>
+        </ContainerTitle>
+        <ContainerComponents top={"20px"}>
+          <TextInput
+            onInputChange={(valor) => setUserInput((prev) => ({...prev, valor}))}
+            item={userInput}
+            size={"470px"}
+          />
+        </ContainerComponents>
+        <ContainerComponents top={"35px"} bottom={""}>
+          <TextInput
+            onInputChange={(valor) => setPasswordInput((prev) => ({...prev, valor}))}
+            item={passwordInput}
+            size={"470px"}
+          />
+        </ContainerComponents>
+        <ContainerComponents top={"90px"}>
+          <ButtonStyled
+            onClick={() => console.log("Clicando no botão")}
+            size={{width: "340px", height: "55px"}}
           >
-            Entrar
-          </StyledButton>
-        </Inputs>
-      </Branco>
-    </Main>
-  )
-}
+            <ButtonName>Entrar</ButtonName>
+          </ButtonStyled>
+        </ContainerComponents>
+      </ContainerForm>
+    </Container>
+  );
+};
 
 export default Login;

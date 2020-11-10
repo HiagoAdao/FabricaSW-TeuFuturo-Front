@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import {Sizes} from "../../theme/sizes";
-import {Colors} from "../../theme/colors";
+import { Sizes } from "../../theme/sizes";
+import { Colors } from "../../theme/colors";
 
 export const StyledButtonLink = styled.button`
   color: ${Colors.lightPrimary};
