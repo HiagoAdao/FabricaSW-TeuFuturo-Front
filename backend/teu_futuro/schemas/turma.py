@@ -1,7 +1,5 @@
 from marshmallow import Schema, fields
 from .professor import ProfessorSchema
-from .aluno import AlunoSchema
-from .atividade import AtividadeSchema
 
 
 class TurmaSchema(Schema):

@@ -29,7 +29,7 @@ class ProfessorDAO:
                 professor.save()
 
                 transaction.commit()
-                
+
                 return professor.id
             except BaseException as e:
                 if transaction is not None:

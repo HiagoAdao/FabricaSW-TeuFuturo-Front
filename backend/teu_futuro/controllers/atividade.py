@@ -7,7 +7,7 @@ class AtividadeController:
     @staticmethod
     def obter_todas_atividades(turma_id):
         aluno_service = AtividadeService()
-        resp = [ 
+        resp = [
             AtividadeSchema().load(ativ)
             for ativ in aluno_service.obter_atividade_por_turma(turma_id)
         ]

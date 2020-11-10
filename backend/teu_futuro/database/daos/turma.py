@@ -45,9 +45,9 @@ class TurmaDAO:
                 turma.save()
 
                 transaction.commit()
-                
+
                 return turma.id
             except BaseException as e:
                 if transaction is not None:
                     transaction.rollback()
-                raise ProfessorDAOException(f"Erro em TurmaDAO.salvar: {e}")
+                raise TurmaDAOException(f"Erro em TurmaDAO.salvar: {e}")

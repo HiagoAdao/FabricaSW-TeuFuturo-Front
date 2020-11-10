@@ -1,4 +1,3 @@
-from ..schemas.turma import TurmaSchema
 from .mock_turmas import TURMAS
 from teu_futuro.database import TurmaDAO
 
@@ -11,9 +10,15 @@ class TurmaService:
         turmas_banco = self.dao.obter_todos()
         turmas = []
         for item in turmas_banco:
-            turma_existente = next(filter(lambda t: t["id"] == item["turma"]["id"], turmas), None)
+            turma_existente = next(filter(
+                lambda t: t["id"] == item["turma"]["id"],
+                turmas
+            ), None)
             if not turma_existente:
-                turmas.append({ **item["turma"], "professores": [item["professor"]] })
+                turmas.append({
+                    **item["turma"],
+                    "professores": [item["professor"]]
+                })
             else:
                 turma_existente["professores"].append(item["professor"])
         return turmas
@@ -30,4 +35,3 @@ class TurmaService:
         #  conexão com banco de dados
         TURMAS.append(dados_turma)
         return "Turma criada com sucesso"
-
