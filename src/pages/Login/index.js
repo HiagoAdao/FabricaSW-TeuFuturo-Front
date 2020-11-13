@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 import ButtonStyled from "../../components/ButtonStyled";
 import TextInput from "../../components/TextInput";
 import { 
@@ -61,7 +62,7 @@ const Login = (props) => {
         </ContainerComponents>
         <ContainerComponents top={"90px"}>
           <ButtonStyled
-            onClick={() => console.log("Clicando no botão")}
+            onClick={() => props.history.push("/turmas")}
             size={{width: "340px", height: "55px"}}
           >
             <ButtonName>Entrar</ButtonName>
@@ -72,4 +73,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default withRouter(Login);

@@ -67,7 +67,7 @@ const InputStyled = ({item, onInputChange, type, disabled, size}) => {
         <ContainerIcon>
           {
             type === "date" &&
-              <img src={disabled ? calendarDisabled : calendar}/>
+              <img alt={"CalendarIcon"} src={disabled ? calendarDisabled : calendar}/>
           }
           {
             type === "date" || type === "value" || type === "number"
