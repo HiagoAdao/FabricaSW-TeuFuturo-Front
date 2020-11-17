@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { GlobalStyle } from "./theme/global_style";
 import constants from "./config/constants";
-import Login from "./pages/Login";
-import ListagemTurmas from "./pages/ListagemTurmas";
+import Login from "./views/Login";
+import ListagemTurmas from "./views/ListagemTurmas";
 
 function App() {
   return (

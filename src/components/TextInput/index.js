@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
 
 const InputStyled = ({item, onInputChange, type, disabled, size}) => {
   const [isFocused, setIsFocused] = useState(false);
-  const {titulo, valor, invalidacao, mensagemErro} = item;
+  const { titulo, valor, invalidacao, mensagemErro } = item;
 
   const masks = {
     "value": createNumberMask({
@@ -31,7 +31,7 @@ const InputStyled = ({item, onInputChange, type, disabled, size}) => {
     "value" : "Ex: R$ 1.800,67",
     "number": "Digite a quantidade",
     "date": "DD/MM/AAAA",
-    "text": "Digite o texto"
+    "text": "Digite..."
   };
 
   const onChange = ({target}) => {
@@ -72,11 +72,11 @@ const InputStyled = ({item, onInputChange, type, disabled, size}) => {
           {
             type === "date" || type === "value" || type === "number"
             ? <InputMask
-                type="text"
+                type={"text"}
                 value={valor}
                 onChange={onChange}
                 disabled={disabled}
-                margin="dense"
+                margin={"dense"}
                 placeholder={placeholders[type]}
                 guide={false}
                 onFocusCapture={setFocusTrue}
@@ -84,6 +84,7 @@ const InputStyled = ({item, onInputChange, type, disabled, size}) => {
                 mask={masks[type]}
               />
             : <NoMaskInput 
+                type={type || "text"}
                 value={valor || ""}
                 disabled={disabled}
                 onChange={onChange}
