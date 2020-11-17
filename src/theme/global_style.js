@@ -12,13 +12,13 @@ export const GlobalStyle = createGlobalStyle`
         ${HeadingStyle};
         font-weight: 500;
         font-size: ${Sizes.xxLarge};
-        color: ${Colors.white};
+        color: ${Colors.black};
     }
 
     h2 {
         ${HeadingStyle};
         font-weight: 500;
         font-size: ${Sizes.xLarge};
-        color: ${Colors.white};
+        color: ${Colors.black};
     }
 `;
