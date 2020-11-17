@@ -73,3 +73,7 @@ export const ContainerComponents = styled.div`
 export const ButtonName = styled(H2Styled)`
   color: ${Colors.white};
 `;
+
+export const InvalidLogin = styled(Body2)`
+  color: ${Colors.red};
+`;
