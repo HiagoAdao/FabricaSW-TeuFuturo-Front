@@ -6,7 +6,7 @@ const Header = (props) => {
     <>
       <Container>
         <img src={logo} alt="logo_teu_futuro" ></img>
-        <HeaderTitle> Lista de Turmas</HeaderTitle>
+        <HeaderTitle> {props.title || `Lista de Turmas`}</HeaderTitle>
       </Container>
     </>
   );

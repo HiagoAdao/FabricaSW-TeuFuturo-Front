@@ -20,5 +20,8 @@ export const Title = styled(H2Styled)`
   padding-left: 72px;
 `;
 
-export const ButtonContainer = styled.div`
-`
+export const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;

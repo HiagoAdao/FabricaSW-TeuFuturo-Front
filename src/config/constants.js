@@ -1,7 +1,8 @@
 const PAGES = {
     HOME: "/",
     LOGIN: "/login",
-    LISTAGEM_TURMAS: "/turmas"
+    LISTAGEM_TURMAS: "/turmas",
+    TURMA: "/turma",
 };
 
 const local = {
