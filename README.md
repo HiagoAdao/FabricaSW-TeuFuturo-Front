@@ -1,7 +1,8 @@
 # #TeuFuturo
 
 Projeto frontend da matéria  _Fábrica de Software_  na disciplina  _Desafios da Tecnologia e Inovação_  do curso de _Ciência da Computação_ na faculdade [IMED](https://www.imed.edu.br/).
-A URL de produção do sistema pode ser encontrada neste link [link](https://teu-futuro-imed.vercel.app).
+
+A aplicação pode ser encontrada neste link [link](https://teu-futuro-imed.vercel.app).
 
 ---
 ## Principais tecnologias utilizadas
