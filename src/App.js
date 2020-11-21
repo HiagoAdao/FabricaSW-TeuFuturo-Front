@@ -13,8 +13,8 @@ function App() {
         <Switch>
           <Route path={constants.PAGES.LOGIN} component={Login} />
           <Route exact path={constants.PAGES.HOME} component={Login} />
-          <Route path={constants.PAGES.LISTAGEM_TURMAS} component={ListagemTurmas} />
-          <Route path={constants.PAGES.TURMA} component={VisualizarTurma} />
+          <Route exact path={constants.PAGES.LISTAGEM_TURMAS} component={ListagemTurmas} />
+          <Route exact path={constants.PAGES.TURMA} component={VisualizarTurma} />
         </Switch>
       </BrowserRouter>
     </>

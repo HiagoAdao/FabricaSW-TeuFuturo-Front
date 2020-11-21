@@ -1,24 +1,26 @@
 import styled from "styled-components";
 import { Colors } from "../../theme/colors";
-import { H2Styled, H1Styled, Body2 } from "../../theme/typography";
+import { H2Styled  } from "../../theme/typography";
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 80px 20px;
+`;
+
+export const ContainerTable = styled.div`
+  width: 95%;
+  margin-top: 10px;
 `;
 
 export const ButtonName = styled(H2Styled)`
   color: ${Colors.white};
 `;
 
-export const Title = styled(H2Styled)`
-  align-self: flex-start;
-  color: ${Colors.primary};
-  padding-left: 72px;
-`;
-
 export const ButtonContainer = styled.div`
-`
+  position: absolute;
+  padding: 10px;
+  bottom: 10px;
+`;

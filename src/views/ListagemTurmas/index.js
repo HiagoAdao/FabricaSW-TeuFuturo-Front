@@ -1,38 +1,55 @@
-import Header from "../../components/Header";
-import { Container, ButtonName, Title, ButtonContainer } from "./index.styled";
+import React from "react";
+import NavBar from "../../components/NavBar";
+import { Container, ButtonName, ContainerTable, ButtonContainer } from "./index.styled";
 import ButtonStyled from "../../components/ButtonStyled";
-import Table from "../../components/Table";
-import { Colors } from "../../theme/colors";
+import CustomTable from "../../components/CustomTable";
 
 const ListagemTurmas = (props) => {
-  const handleClick = () => {
-    props.history.push('/turma')
-    console.log('teste');
+  const headers = {
+    nome: {
+      title: "Nome",
+      orderableColumn: true,
+      order: null
+    },
+    data_fim: {
+      title: "Data Fim",
+      orderableColumn: true,
+      order: "desc"
+    }
+  };
+
+  const dados = [
+    {
+      nome: "TeuFuturo Ciência da Computação - Verão 2021",
+      data_fim: "25/08/2021"
+    },
+    {
+      nome: "Desafios de Tecnologia e Inovação",
+      data_fim: "10/12/2020"
+    }
+  ];
+
+  const actionColumn = {
+    title: "Visualizar",
+    color: "",
+    action: (lineContent) => {
+      console.log(lineContent);
+      props.history.push('/turma');
+    }
   };
   
   return (
     <>
-      <Header />
+      <NavBar />
       <Container>
-        <>
-          <Title>Nome da turma</Title>
-          <Table 
-            title={"Administração 1"}
-            secondTitle={"Data fim: 24/11/2020"} 
-
-            onClick={handleClick} 
-            buttonText={"Visualizar"}
-            buttonColor={Colors.primary}  
+        <ContainerTable>
+          <CustomTable
+            headers={headers}
+            data={dados}
+            msgEmptyBody={"Ainda não existem turmas cadastradas."}
+            actionColumn={actionColumn}
           />
-          <Table
-            title={"Ciencia da Computação 1"}
-            secondTitle={"Data fim: 02/12/2020"}
-
-            onClick={handleClick} 
-            buttonText={"Visualizar"}
-            buttonColor={Colors.primary} 
-          />
-        </>
+        </ContainerTable>
         <ButtonContainer>
           <ButtonStyled
             onClick={() => console.log('click')}
