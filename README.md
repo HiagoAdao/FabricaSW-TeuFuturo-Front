@@ -6,16 +6,8 @@ A URL de produção do sistema pode ser encontrada neste link [link](https://teu
 ---
 ## Principais tecnologias utilizadas
 As principais tecnologias utilizadas foram:
-<p align="center">
-  <a href="https://pt-br.reactjs.org/" target="blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png" width="100" alt="React Logo" />
-  </a>
-  <a href="https://styled-components.com/" target="blank">
-    <img src="https://styled-components.com/logo.png" width="63" alt="React Logo" />
-  </a>
-</p>
-
-As demais tecnologias que foram usadas foram:
+- [ReactJs](https://pt-br.reactjs.org/)
+- [Styled Components](https://styled-components.com/)
 - [Axios](https://www.npmjs.com/package/axios)
 - [React Router Dom](https://www.npmjs.com/package/react-router-dom)
 - [React Select](https://www.npmjs.com/package/react-select)
