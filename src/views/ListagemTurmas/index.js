@@ -1,33 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "../../components/NavBar";
 import { Container, ButtonName, ContainerTable, ButtonContainer } from "./index.styled";
 import ButtonStyled from "../../components/ButtonStyled";
 import CustomTable from "../../components/CustomTable";
+import axios from "axios";
+import config from "../../config/constants";
 
 const ListagemTurmas = (props) => {
+  const [ turmas, setTurmas ] = useState([]);
+  const [ loading, setLoading ] = useState(true);
+
   const headers = {
     nome: {
-      title: "Nome",
+      title: "Nome da turma",
       orderableColumn: true,
       order: null
     },
     data_fim: {
-      title: "Data Fim",
+      title: "Data fim",
       orderableColumn: true,
       order: "desc"
     }
   };
-
-  const dados = [
-    {
-      nome: "TeuFuturo Ciência da Computação - Verão 2021",
-      data_fim: "25/08/2021"
-    },
-    {
-      nome: "Desafios de Tecnologia e Inovação",
-      data_fim: "10/12/2020"
-    }
-  ];
 
   const actionColumn = {
     title: "Visualizar",
@@ -38,17 +32,31 @@ const ListagemTurmas = (props) => {
     }
   };
   
+  const obterTurmas = async () => {
+    const url = config.DOMAIN_URL + "/turmas";
+    const { data } = await axios.get(url);
+    setTurmas(data.data);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    obterTurmas();
+  }, []);
+  
   return (
     <>
-      <NavBar />
+      <NavBar title={"Lista de turmas"} />
       <Container>
         <ContainerTable>
-          <CustomTable
-            headers={headers}
-            data={dados}
-            msgEmptyBody={"Ainda não existem turmas cadastradas."}
-            actionColumn={actionColumn}
-          />
+          {
+            !loading &&
+            <CustomTable
+              headers={headers}
+              data={turmas}
+              msgEmptyBody={"Ainda não existem turmas cadastradas."}
+              actionColumn={actionColumn}
+            />
+          }
         </ContainerTable>
         <ButtonContainer>
           <ButtonStyled
