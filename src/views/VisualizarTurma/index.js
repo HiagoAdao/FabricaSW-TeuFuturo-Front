@@ -1,4 +1,4 @@
-import AccordionSection from "../../components/Accordion";
+import AccordionSection from "../../components/AccordionSection";
 import NavBar from "../../components/NavBar";
 import { Container, Title } from "./index.styled";
 import { Colors } from "../../theme/colors";
