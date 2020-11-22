@@ -1,34 +1,40 @@
-import React, { useState, forwardRef, useImperativeHandle } from "react";
-import { ContainerModal, Modal} from "./index.styled";
+import React from "react";
+import { 
+  ContainerModal, Modal,
+  ContainerChildren, HeaderModal,
+  HeaderText, CloseIcon, BodyModal
+} from "./index.styled";
+import IconClose from "../../assets/icons/icon-close.svg";
 
-const CustomModal = forwardRef(({children}, ref) => {
-  const [isVisible, setVisible] = useState(false);
-
-  const openModal = () => {
-    setVisible(true);
-  };
-
+const CustomModal = (props) => {
   const closeModal = () => {
-    setVisible(false);
+    props.onClose && props.onClose();
   };
 
-  useImperativeHandle(ref, () => {
-    return {
-      openModal: () => openModal(),
-      closeModal: () => closeModal()
-    };
-  });
-
-  const renderModal = () => (
+  return (
     <ContainerModal>
       <Modal>
-        {children}
+        <ContainerChildren
+          height={props.height}
+          width={props.width}
+        >
+          <HeaderModal>
+            <HeaderText>
+              { props.name }
+            </HeaderText>
+            <CloseIcon
+              alt={"CloseIcon"}
+              src={IconClose}
+              onClick={closeModal}
+            />
+          </HeaderModal>
+          <BodyModal>
+            { props.children }
+          </BodyModal>
+        </ContainerChildren>
       </Modal>
     </ContainerModal>
   );
-
-  if(isVisible) return renderModal();
-  return <></>;
-});
+};
 
 export default CustomModal;
