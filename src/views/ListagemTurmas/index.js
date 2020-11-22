@@ -3,12 +3,14 @@ import NavBar from "../../components/NavBar";
 import { Container, ButtonName, ContainerTable, ButtonContainer } from "./index.styled";
 import ButtonStyled from "../../components/ButtonStyled";
 import CustomTable from "../../components/CustomTable";
+import ModalAdicionarTurma from "./ModalAdicionarTurma";
 import axios from "axios";
 import config from "../../config/constants";
 
 const ListagemTurmas = (props) => {
   const [ turmas, setTurmas ] = useState([]);
   const [ loading, setLoading ] = useState(true);
+  const [ renderAdicionarTurma, setRenderAdicionarTurma ] = useState(false);
 
   const headers = {
     nome: {
@@ -58,15 +60,21 @@ const ListagemTurmas = (props) => {
             />
           }
         </ContainerTable>
-        <ButtonContainer>
-          <ButtonStyled
-            onClick={() => console.log('click')}
-            size={{ width: "340px", height: "55px" }}
-          >
-            <ButtonName>Adicionar turma</ButtonName>
-          </ButtonStyled>
-        </ButtonContainer>
       </Container>
+      <ButtonContainer>
+        <ButtonStyled
+          onClick={() => setRenderAdicionarTurma(true)}
+          size={{ width: "340px", height: "55px" }}
+          >
+          <ButtonName>Adicionar turma</ButtonName>
+        </ButtonStyled>
+      </ButtonContainer>
+      {
+        renderAdicionarTurma &&
+        <ModalAdicionarTurma
+          onClose={() => setRenderAdicionarTurma(false)}
+        />
+      }
     </>
   );
 };

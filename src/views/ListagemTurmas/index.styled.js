@@ -4,15 +4,14 @@ import { H2Styled  } from "../../theme/typography";
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 80px 20px;
+  padding-top: 80px;
 `;
 
 export const ContainerTable = styled.div`
   width: 95%;
-  margin-top: 10px;
+  padding: 65px 20px 20px 20px;
 `;
 
 export const ButtonName = styled(H2Styled)`
@@ -20,7 +19,12 @@ export const ButtonName = styled(H2Styled)`
 `;
 
 export const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 90%;
+
   position: absolute;
-  padding: 10px;
-  bottom: 10px;
+  bottom: 15px;
 `;
