@@ -6,7 +6,7 @@ import { Colors } from "../../theme/colors";
 import iconDropDown from "../../assets/icons/icon-drop-down.svg";
 import PropTypes from "prop-types";
 
-const InputSelectStyled = ({item, onSelectOption, disabled, size}) => {
+const InputSelectStyled = ({item, onSelectOption, disabled, size, isMultiple}) => {
 
   const customStyles = {
     indicatorSeparator: () => ({
@@ -93,6 +93,7 @@ const InputSelectStyled = ({item, onSelectOption, disabled, size}) => {
             components={{ DropdownIndicator: CustomDropDown }}
           />
         : <InputSelect
+            isMulti={isMultiple || false}
             onChange={onSelect}
             value={item.valor}
             options={item.options
