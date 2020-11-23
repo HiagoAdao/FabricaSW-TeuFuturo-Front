@@ -7,6 +7,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   padding-top: 80px;
+  padding-bottom: 77px;
 `;
 
 export const ContainerTable = styled.div`
