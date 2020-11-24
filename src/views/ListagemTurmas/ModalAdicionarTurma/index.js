@@ -28,7 +28,7 @@ const ModalAdicionarTurma = (props) => {
   });
   const [inputSelect, setInputSelect] = useState({
     titulo: "Professores*",
-    options: [{label: "Fahad", value: {email: "fahad@imed.edu.br", id: 1, nome: "Fahad", sobrenome: "Kalil"}}],
+    options: null,
     value: null
   });
   const [buttonStatus, setButtonStatus] = useState(true);
@@ -65,7 +65,6 @@ const ModalAdicionarTurma = (props) => {
   };
 
   const salvaTurma = async () => {
-    debugger;
     const objectToSend = {
       nome: inputsTexto.nome.valor,
       professores: inputSelect.value.map(professor => (professor.value)),
@@ -74,14 +73,16 @@ const ModalAdicionarTurma = (props) => {
     };
     const url = config.DOMAIN_URL + "/turma";
 
-    const res = axios.post(url, objectToSend);
+    axios.post(url, objectToSend);
 
-    console.log(res);
+    props.onClose();
+
+    window.location.reload();
   };
 
-  // useEffect(() => {
-  //   obterProfessores();
-  // }, []);
+  useEffect(() => {
+    obterProfessores();
+  }, []);
 
   useEffect(() => {
     (inputsTexto.nome.valor &&
