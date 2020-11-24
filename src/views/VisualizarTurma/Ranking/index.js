@@ -31,21 +31,6 @@ const Ranking = (props) => {
     }
   };
 
-  const obterDataUltimaAtualizacao = async () => {
-    try {
-      const url = `${config.DOMAIN_URL}/turma/${props.turmaId}`;
-      const params = {
-        headers: {
-          'Authorization': usuario.token
-        }
-      };
-      const { data } = await axios.get(url, params);
-      setDataUltimaAtualizacao(data.data.data_atualizacao_ranking);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const obterRanking = async () => {
     try {
       const url = `${config.DOMAIN_URL}/turma/${props.turmaId}/ranking-gamificacao`;
@@ -60,7 +45,6 @@ const Ranking = (props) => {
         },
         params: !!(usuario.perfil.nome === "aluno") ? axiosParams() : null 
       };
-      await obterDataUltimaAtualizacao();
       const { data } = await axios.get(url, params);
       setRanking(data.data);
       setLoading(false);
@@ -104,7 +88,7 @@ const Ranking = (props) => {
         {
           !!(ranking && ranking.length) &&
           <UltimaAtualizacao>
-            Última atualização: {dataUltimaAtualizacao}
+            Última atualização: {props.dataUltimaAtualizacao}
           </UltimaAtualizacao>
         }
         {

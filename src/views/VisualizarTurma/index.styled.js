@@ -12,7 +12,7 @@ export const ContainerTurma = styled.div`
 
 export const Container = styled.div`
   width: 98%;
-  padding: 65px 0;
+  padding: 20px 0;
 `;
 
 export const ContainerAccordions = styled.div`
