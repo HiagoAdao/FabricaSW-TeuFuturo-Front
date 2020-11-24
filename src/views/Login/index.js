@@ -91,7 +91,7 @@ const Login = (props) => {
         professor: "/turmas",
       };
 
-      setUsuario({
+      await setUsuario({
         ...dadosUsuario,
         token: tokenUsuario
       });

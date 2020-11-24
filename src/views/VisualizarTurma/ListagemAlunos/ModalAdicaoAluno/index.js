@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useLayoutEffect, useContext } from "react";
 import CustomModal from "../../../../components/CustomModal";
 import { Container, ContainerButton, ContainerForms } from "./index.styled";
 import InputStyled from "../../../../components/TextInput";
@@ -155,10 +155,14 @@ const ModalInclusaoAluno = (props) => {
     props.onSave && props.onSave();
   };
 
-  useEffect(() => {
-    obtemEscolas();
-    obtemSponsors();
-    obtemAnoEscolar();
+  useLayoutEffect(() => {
+    async function fetchFunction() {
+      await obtemEscolas();
+      await obtemSponsors();
+      await obtemAnoEscolar();
+    }
+
+    fetchFunction();
   }, []);
 
   useEffect(() => {

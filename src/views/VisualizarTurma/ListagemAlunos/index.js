@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, {useState, useLayoutEffect, useContext} from "react";
 import CustomTable from "../../../components/CustomTable";
 import config from "../../../config/constants";
 import axios from "axios";
@@ -75,8 +75,12 @@ const ListagemAlunos = (props) => {
     setLoading(false);
   };
 
-  useEffect(() => {
-    obterAlunos();
+  useLayoutEffect(() => {
+    async function fetchFunction() {
+      await obterAlunos();
+    }
+
+    fetchFunction();
   }, []);
 
   if (!usuario || !isAutorizado(usuario.perfil.permissoes, "/alunos")) return (<></>);

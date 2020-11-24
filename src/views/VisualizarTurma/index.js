@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useLayoutEffect, useContext } from "react";
 import NavBar from "../../components/NavBar";
 import { ContainerTurma, Container, ContainerAccordions } from "./index.styled";
 import ListagemAlunos from "./ListagemAlunos";
@@ -31,12 +31,12 @@ const VisualizarTurma = (props) => {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     obterDataUltimaAtualizacao();
   }, []);
 
   if (loading) return <></>;
-  console.log("Turma", dadosTurma);
+
   return (
     <>
       <NavBar title={dadosTurma.nome} />

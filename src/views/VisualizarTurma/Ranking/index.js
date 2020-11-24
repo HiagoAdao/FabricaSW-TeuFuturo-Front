@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useLayoutEffect, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import AccordionSection from "../../../components/AccordionSection";
 import ButtonLinkStyled from "../../../components/Link";
@@ -69,7 +69,7 @@ const Ranking = (props) => {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     obterRanking();
   }, []);
 
