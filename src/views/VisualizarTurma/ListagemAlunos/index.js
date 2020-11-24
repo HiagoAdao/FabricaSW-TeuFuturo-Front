@@ -19,7 +19,7 @@ const ListagemAlunos = (props) => {
     nome: {
       title: "Nome",
       orderableColumn: true,
-      order: null
+      order: "asc"
     },
     email: {
       title: "Email",
