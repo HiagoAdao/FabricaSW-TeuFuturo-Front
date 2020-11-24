@@ -95,7 +95,7 @@ const Ranking = (props) => {
           !!(usuario.perfil.nome === "administrador") &&
           <ContainerButton>
             <ButtonLinkStyled
-              title={"+ Clique para recalcular ranking."}
+              title={`+ Clique para ${!!(ranking && ranking.length) ? 'recalcular' :  'calcular'} ranking.`}
               onClick={recalcularRanking}
             />
           </ContainerButton>
