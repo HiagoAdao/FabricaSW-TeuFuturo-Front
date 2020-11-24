@@ -87,13 +87,15 @@ CustomTable.propTypes = {
   msgEmptyBody: PropTypes.string.isRequired,
   actionColumn: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    color: PropTypes.string,
+    color: PropTypes.func,
     action: PropTypes.func.isRequired
   })
 };
 
 CustomTable.defaultProps = {
-  actionColumn: {}
+  actionColumn: {
+    color: () => {}
+  }
 };
 
 export default CustomTable;

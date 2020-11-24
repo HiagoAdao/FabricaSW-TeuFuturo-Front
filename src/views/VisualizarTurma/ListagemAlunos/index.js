@@ -40,9 +40,9 @@ const ListagemAlunos = (props) => {
   };
   const actionColumn = {
     title: "Inativar",
-    color: Colors.red,
+    color: (lineContent) => lineContent.inativo ? Colors.greyHundredPercent : Colors.red,
     action: (lineContent) => {
-      inativarAluno(lineContent);
+      !lineContent.inativo && inativarAluno(lineContent);
     }
   };
 

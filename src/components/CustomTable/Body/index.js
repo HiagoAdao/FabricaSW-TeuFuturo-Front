@@ -17,7 +17,7 @@ const BodyContent = ({ headers, content, actionColumn }) => {
       <td>
         <ContainerActionColumn>
           <ActionColumn
-            color={actionColumn.color}
+            color={actionColumn.color ? actionColumn.color(content) : ""}
             onClick={() => actionColumn.action(content)}
           >
             { actionColumn.title }
