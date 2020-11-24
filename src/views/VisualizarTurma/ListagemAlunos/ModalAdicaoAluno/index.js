@@ -178,7 +178,7 @@ const ModalInclusaoAluno = (props) => {
         onClose={props.onClose}
         name={"Cadastrar aluno"}
         height={"700px"}
-        width={"500px"}
+        width={"550px"}
       >
         <Container>
           <ContainerForms>

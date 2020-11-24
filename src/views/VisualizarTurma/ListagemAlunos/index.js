@@ -3,9 +3,12 @@ import CustomTable from "../../../components/CustomTable";
 import config from "../../../config/constants";
 import axios from "axios";
 import AuthContext from "../../../config/context/auth";
+import AccordionSection from "../../../components/AccordionSection";
 import ButtonLinkStyled from "../../../components/Link";
 import ModalInclusaoAluno from "./ModalAdicaoAluno";
 import { Colors } from "../../../theme/colors";
+import isAutorizado from "../../../services/auth";
+import { Container, ContainerButton } from "./index.styled";
 
 const ListagemAlunos = (props) => {
   const { usuario } = useContext(AuthContext);
@@ -40,6 +43,7 @@ const ListagemAlunos = (props) => {
   };
   const actionColumn = {
     title: "Inativar",
+    render: () => !!(usuario.perfil.nome === "administrador"),
     color: (lineContent) => lineContent.inativo ? Colors.greyHundredPercent : Colors.red,
     action: (lineContent) => {
       !lineContent.inativo && inativarAluno(lineContent);
@@ -47,6 +51,7 @@ const ListagemAlunos = (props) => {
   };
 
   const inativarAluno = async (lineContent) => {
+    setLoading(true);
     const url = config.DOMAIN_URL + `/aluno/${lineContent.id}/inativar`;
     const header = {
       headers: {
@@ -74,34 +79,42 @@ const ListagemAlunos = (props) => {
     obterAlunos();
   }, []);
 
+  if (!usuario || !isAutorizado(usuario.perfil.permissoes, "/alunos")) return (<></>);
   return (
-    <>
-    {
-      !loading &&
-      <CustomTable
-        headers={headers}
-        data={alunos}
-        msgEmptyBody={"Ainda não existem alunos cadastrados."}
-        actionColumn={actionColumn}
-      />
-    }
-    <ButtonLinkStyled
-      title={"+ Clique para adicionar um novo aluno."}
-      onClick={() => setRenderModalInclusaoAluno(true)}
-    />
-    {
-      renderModalInclusaoAluno &&
-      <ModalInclusaoAluno
-        turmaId={props.turmaId}
-        onClose={() => setRenderModalInclusaoAluno(false)}
-        onSave={() => {
-          setLoading(true);
-          setRenderModalInclusaoAluno(false);
-          obterAlunos();
-        }}
-      />
-    }
-    </>
+    <AccordionSection title={"Alunos"}>
+      <Container>
+        {
+          !loading &&
+          <CustomTable
+            headers={headers}
+            data={alunos}
+            msgEmptyBody={"Ainda não existem alunos cadastrados."}
+            actionColumn={actionColumn}
+          />
+        }
+        {
+          !!(usuario.perfil.nome === "administrador") &&
+          <ContainerButton>
+            <ButtonLinkStyled
+              title={"+ Clique para adicionar um novo aluno."}
+              onClick={() => setRenderModalInclusaoAluno(true)}
+            />
+          </ContainerButton>
+        }
+        {
+          renderModalInclusaoAluno &&
+          <ModalInclusaoAluno
+            turmaId={props.turmaId}
+            onClose={() => setRenderModalInclusaoAluno(false)}
+            onSave={() => {
+              setLoading(true);
+              setRenderModalInclusaoAluno(false);
+              obterAlunos();
+            }}
+          />
+        }
+      </Container>
+    </AccordionSection>
   );
 };
 export default ListagemAlunos;

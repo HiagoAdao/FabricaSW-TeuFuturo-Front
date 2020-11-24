@@ -61,7 +61,7 @@ const CustomTable = ({ headers, data, msgEmptyBody, actionColumn }) => {
       <Table>
         <thead>
           <HeadContent
-            hasActionColumn={!!(Object.keys(actionColumn).length)}
+            hasActionColumn={!!(Object.keys(actionColumn).length) && (actionColumn.render ? actionColumn.render() : true)}
             headers={headersOrder}
             headersIcons={sortIcons}
             onSortedColumn={onSortedColumns}

@@ -83,7 +83,7 @@ const ModalAdicionarTurma = (props) => {
         'Authorization': usuario.token
       }
     };
-    axios.post(url, objectToSend, header);
+    await axios.post(url, objectToSend, header);
 
     props.onSave && props.onSave();
   };

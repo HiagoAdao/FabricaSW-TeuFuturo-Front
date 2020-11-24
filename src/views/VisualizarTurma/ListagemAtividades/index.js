@@ -1,56 +1,46 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { withRouter } from "react-router-dom";
 import CustomTable from "../../../components/CustomTable";
+import AccordionSection from "../../../components/AccordionSection";
 import ButtonLinkStyled from "../../../components/Link";
-import config from "../../../config/constants";
-import axios from "axios";
 import AuthContext from "../../../config/context/auth";
+import { Container, ContainerButton } from "./index.styled";
 
 const ListagemAtividades = (props) => {
-  const usuario = useContext(AuthContext);
-  const [ atividades, setAtividades ] = useState([]); 
-  const [ loading, setLoading ] = useState(true);
+  const { usuario } = useContext(AuthContext);
   const headers = {
     nome: {
-      title: "Nome"
+      title: "Nome",
+      orderableColumn: false
     },
     descricao: {
-      title: "Descrição"
+      title: "Descrição",
+      orderableColumn: false
     },
     peso: {
-      title: "Peso"
+      title: "Peso",
+      orderableColumn: false
     }
   };
 
-  const obtemAtividades = async () => {
-    const url = config.DOMAIN_URL + "/turma/" + props.turmaId + "/atividades";
-    const header = {
-      headers: {
-        'Authorization': usuario.token
-      }
-    };
-    const { data } = await axios.get(url, header);
-    setAtividades(data.data);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    obtemAtividades();
-  }, [])
-
   return (
-    <>
-      {
-        !loading && 
+    <AccordionSection title={"Atividades"}>
+      <Container>
         <CustomTable
           headers={headers}
-          data={atividades}
+          data={[]}
+          msgEmptyBody={"Ainda não existem atividades cadastradas."}
         />
-      }
-      <ButtonLinkStyled
-        title={"+ Clique para adicionar uma nova atividade."}
-      />
-    </>
+        {
+          !!(usuario.perfil.nome === "administrador") &&
+          <ContainerButton>
+            <ButtonLinkStyled
+              title={"+ Clique para adicionar uma nova atividade."}
+            />
+          </ContainerButton>
+        }
+      </Container>
+    </AccordionSection>
   );
 };
 

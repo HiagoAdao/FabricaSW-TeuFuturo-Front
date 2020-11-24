@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
 import AuthContext from "../../config/context/auth";
+import NaoAutorizado from "../../components/NaoAutorizado";
 
 const PrivateRoute = ({ component: Component, authorizationRoute, ...rest }) => {
   const { usuario } = useContext(AuthContext);
 
   const isAutorizado = () => {
+    debugger;
     const validRoutes = usuario.perfil.permissoes.app.find(route => {
       return route === authorizationRoute;
     });
@@ -15,7 +17,7 @@ const PrivateRoute = ({ component: Component, authorizationRoute, ...rest }) => 
   const renderComponentWithAuth = (props) => {
     return (
       !!(usuario && Object.keys(usuario).length)
-        ? isAutorizado() ? <Component {...props} /> : <></>
+        ? isAutorizado() ? <Component {...props} /> : <NaoAutorizado />
         : <Redirect to="/login" />
     )
   };

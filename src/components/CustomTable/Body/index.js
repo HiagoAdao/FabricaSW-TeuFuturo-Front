@@ -11,7 +11,7 @@ const BodyContent = ({ headers, content, actionColumn }) => {
   };
 
   const renderMenu = () => {
-    if (!Object.keys(actionColumn).length) return <></>;
+    if (!(Object.keys(actionColumn).length) || (actionColumn.render ? !actionColumn.render() : false)) return <></>;
 
     return (
       <td>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Colors } from "../../theme/colors";
 import { H2Styled, H1Styled, Body2 } from "../../theme/typography";
 
-export const Container = styled.div`
+export const ContainerTurma = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,9 +10,13 @@ export const Container = styled.div`
   padding: 80px 20px;
 `;
 
-export const ContainerAccordions = styled.div`
+export const Container = styled.div`
   width: 98%;
   padding: 65px 0;
+`;
+
+export const ContainerAccordions = styled.div`
+  padding-bottom: 30px;
 `;
 
 export const ButtonName = styled(H2Styled)`

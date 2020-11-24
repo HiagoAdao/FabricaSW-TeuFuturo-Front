@@ -1,10 +1,9 @@
-import AccordionSection from "../../components/AccordionSection";
+import React from "react";
 import NavBar from "../../components/NavBar";
-import { Container, ContainerAccordions } from "./index.styled";
+import { ContainerTurma, Container, ContainerAccordions } from "./index.styled";
 import ListagemAlunos from "./ListagemAlunos";
 import ListagemAtividades from "./ListagemAtividades";
 import Ranking from "./Ranking";
-import React from "react";
 
 const VisualizarTurma = (props) => {
   const turmaId = window.location.pathname.split("/").pop();
@@ -12,17 +11,19 @@ const VisualizarTurma = (props) => {
   return (
     <>
       <NavBar title={"Administração 1"} />
-      <Container>
-        <ContainerAccordions>
-          <AccordionSection title={"Alunos"}>
+      <ContainerTurma>
+        <Container>
+          <ContainerAccordions>
             <ListagemAlunos turmaId={turmaId}/>
-          </AccordionSection>
-          <AccordionSection title={"Atividades"}>
+          </ContainerAccordions>
+          <ContainerAccordions>
             <ListagemAtividades turmaId={turmaId}/>
-          </AccordionSection>
-          <Ranking turmaId={turmaId} />
-        </ContainerAccordions>
-      </Container>
+          </ContainerAccordions>
+          <ContainerAccordions>
+            <Ranking turmaId={turmaId} />
+          </ContainerAccordions>
+        </Container>
+      </ContainerTurma>
     </>
   );
 };

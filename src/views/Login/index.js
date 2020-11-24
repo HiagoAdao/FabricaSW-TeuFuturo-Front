@@ -84,11 +84,18 @@ const Login = (props) => {
 
     const tokenUsuario = await efetuarLogin({ username: usuario, password: senha });
     if (tokenUsuario) {
+      const dadosUsuario = jwt(tokenUsuario);
+      const redirectPerfis = {
+        administrador: "/turmas",
+        aluno: `/turma/${dadosUsuario.turma_id}`,
+        professor: "/turmas",
+      };
+
       setUsuario({
-        ...jwt(tokenUsuario),
+        ...dadosUsuario,
         token: tokenUsuario
       });
-      props.history.push("/turmas");
+      props.history.push(redirectPerfis[dadosUsuario.perfil.nome]);
       return;
     }
     setErroLogin(true);

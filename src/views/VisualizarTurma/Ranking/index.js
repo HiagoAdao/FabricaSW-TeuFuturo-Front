@@ -84,12 +84,15 @@ const Ranking = (props) => {
             msgEmptyBody={"Ainda não existe ranking para esta turma."}
           />
         }
-        <ContainerButton>
-          <ButtonLinkStyled
-            title={"+ Clique para recalcular ranking."}
-            onClick={recalcularRanking}
-          />
-        </ContainerButton>
+        {
+          !!(usuario.perfil.nome === "administrador") &&
+          <ContainerButton>
+            <ButtonLinkStyled
+              title={"+ Clique para recalcular ranking."}
+              onClick={recalcularRanking}
+            />
+          </ContainerButton>
+        }
       </Container>
     </AccordionSection>
   )

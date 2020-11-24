@@ -38,12 +38,18 @@ const ListagemTurmas = (props) => {
   
   const obterTurmas = async () => {
     const url = config.DOMAIN_URL + "/turmas";
-    const header = {
+    const axiosParams = () => {
+      const params = new URLSearchParams();
+      params.append('professor_email', usuario.usuario);
+      return params;
+    }
+    const params = {
       headers: {
         'Authorization': usuario.token
-      }
+      },
+      params: !!(usuario.perfil.nome === "administrador") ? null : axiosParams()
     };
-    const { data } = await axios.get(url, header);
+    const { data } = await axios.get(url, params);
     setTurmas(data.data);
     setLoading(false);
   };
@@ -68,14 +74,17 @@ const ListagemTurmas = (props) => {
           }
         </ContainerTable>
       </Container>
-      <ButtonContainer>
-        <ButtonStyled
-          onClick={() => setRenderAdicionarTurma(true)}
-          size={{ width: "340px", height: "55px" }}
-          >
-          <ButtonName>Adicionar turma</ButtonName>
-        </ButtonStyled>
-      </ButtonContainer>
+      {
+        !!(usuario.perfil.nome === "administrador") &&
+        <ButtonContainer>
+          <ButtonStyled
+            onClick={() => setRenderAdicionarTurma(true)}
+            size={{ width: "340px", height: "55px" }}
+            >
+            <ButtonName>Adicionar turma</ButtonName>
+          </ButtonStyled>
+        </ButtonContainer>
+      }
       {
         renderAdicionarTurma &&
         <ModalAdicionarTurma

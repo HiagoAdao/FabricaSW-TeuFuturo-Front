@@ -24,8 +24,11 @@ export const ButtonContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  width: 90%;
+  width: 100%;
 
-  position: absolute;
-  bottom: 15px;
+  position: fixed;
+  padding: 20px 0;
+  bottom: 0;
+
+  background-color: ${Colors.white};
 `;
