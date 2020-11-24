@@ -27,10 +27,12 @@ export const Image = styled.img`
   height: 50px;
   margin-left: 45px;
   object-fit: contain;
+  user-select: none;
 `;
 
 export const Title = styled(H2Styled)`
   color: ${Colors.white};
   font-size: 20px;
   margin-left: 25px;
+  user-select: none;
 `;
