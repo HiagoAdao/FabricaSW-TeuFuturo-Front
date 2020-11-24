@@ -7,7 +7,6 @@ const PrivateRoute = ({ component: Component, authorizationRoute, ...rest }) => 
   const { usuario } = useContext(AuthContext);
 
   const isAutorizado = () => {
-    debugger;
     const validRoutes = usuario.perfil.permissoes.app.find(route => {
       return route === authorizationRoute;
     });
