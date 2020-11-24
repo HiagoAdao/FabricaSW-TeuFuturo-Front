@@ -1,8 +1,9 @@
 import AccordionSection from "../../components/AccordionSection";
 import NavBar from "../../components/NavBar";
-import { Container} from "./index.styled";
+import { Container, ContainerAccordions } from "./index.styled";
 import ButtonLinkStyled from "../../components/Link";
 import ListagemAlunos from "./ListagemAlunos";
+import Ranking from "./Ranking";
 import React from "react";
 
 const VisualizarTurma = (props) => {
@@ -12,7 +13,7 @@ const VisualizarTurma = (props) => {
     <>
       <NavBar title={"Administração 1"} />
       <Container>
-        <>
+        <ContainerAccordions>
           <AccordionSection title={"Alunos"}>
             <ListagemAlunos turmaId={turmaId}/>
           </AccordionSection>
@@ -21,12 +22,8 @@ const VisualizarTurma = (props) => {
               title={"+ Clique para adicionar uma nova atividade."}
             />
           </AccordionSection>
-          <AccordionSection title={"Ranking de gamificação"}>
-            <ButtonLinkStyled
-              title={"+ Clique para recalcular ranking."}
-            />
-          </AccordionSection>
-        </>
+          <Ranking turmaId={turmaId} />
+        </ContainerAccordions>
       </Container>
     </>
   );

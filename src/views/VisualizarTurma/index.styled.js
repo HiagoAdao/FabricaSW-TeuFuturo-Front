@@ -10,6 +10,11 @@ export const Container = styled.div`
   padding: 80px 20px;
 `;
 
+export const ContainerAccordions = styled.div`
+  width: 98%;
+  padding: 65px 0;
+`;
+
 export const ButtonName = styled(H2Styled)`
   color: ${Colors.white};
 `;
