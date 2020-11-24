@@ -10,10 +10,11 @@ const development = {
 };
 
 const production = {
-    
+    DOMAIN_URL: "https://teu-futuro-backend.herokuapp.com/"
 };
 
 const env = process.env.NODE_ENV || "development";
+console.log("Rodando na ENV:", env);
 const config_options = { development, production };
 
 const config = { ...config_options[env], PAGES };

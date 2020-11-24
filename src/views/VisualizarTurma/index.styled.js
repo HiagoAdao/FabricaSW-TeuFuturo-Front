@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Colors } from "../../theme/colors";
-import { H2Styled, H1Styled, Body2 } from "../../theme/typography";
+import { H2Styled } from "../../theme/typography";
 
 export const ContainerTurma = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ export const ContainerTurma = styled.div`
 
 export const Container = styled.div`
   width: 98%;
-  padding: 20px 0;
+  padding: 35px 0;
 `;
 
 export const ContainerAccordions = styled.div`

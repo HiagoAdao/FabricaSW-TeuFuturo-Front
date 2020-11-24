@@ -12,7 +12,6 @@ const Ranking = (props) => {
   const { usuario } = useContext(AuthContext);
   const [ loading, setLoading ] = useState(true);
   const [ ranking, setRanking ] = useState([]);
-  const [ dataUltimaAtualizacao, setDataUltimaAtualizacao ] = useState("");
 
   const headers = {
     posicao: {
