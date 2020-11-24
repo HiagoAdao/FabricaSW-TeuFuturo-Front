@@ -69,6 +69,10 @@ const InputSelectStyled = ({item, onSelectOption, disabled, size, isMultiple}) =
     onSelectOption && onSelectOption(option);
   };
 
+  const onSelectMulti = (option) => {
+    onSelectOption && onSelectOption(option);
+  };
+
   const getAsyncOptions = async(event) => {
     return await item.loadOptions(event);
   };
@@ -94,7 +98,7 @@ const InputSelectStyled = ({item, onSelectOption, disabled, size, isMultiple}) =
           />
         : <InputSelect
             isMulti={isMultiple || false}
-            onChange={onSelect}
+            onChange={isMultiple ? onSelectMulti : onSelect}
             value={item.valor}
             options={item.options
               ? item.options.map(option => (
