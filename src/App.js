@@ -1,22 +1,18 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React, { useState, useMemo } from "react";
 import { GlobalStyle } from "./theme/global_style";
-import constants from "./config/constants";
-import Login from "./views/Login";
-import ListagemTurmas from "./views/ListagemTurmas";
-import VisualizarTurma from "./views/VisualizarTurma";
+import AuthContext from "./config/context/auth";
+import Routes from "./routes";
 
 function App() {
+  const [ usuario, setUsuario ] = useState(null);
+  const providerValue = useMemo(() => ({ usuario, setUsuario }), [ usuario, setUsuario ]);
+
   return (
     <>
       <GlobalStyle />
-      <BrowserRouter>
-        <Switch>
-          <Route path={constants.PAGES.LOGIN} component={Login} />
-          <Route exact path={constants.PAGES.HOME} component={Login} />
-          <Route exact path={constants.PAGES.LISTAGEM_TURMAS} component={ListagemTurmas} />
-          <Route exact path={constants.PAGES.TURMA} component={VisualizarTurma} />
-        </Switch>
-      </BrowserRouter>
+      <AuthContext.Provider value={providerValue} >
+        <Routes />
+      </AuthContext.Provider>
     </>
   );
 }

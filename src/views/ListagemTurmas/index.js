@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import NavBar from "../../components/NavBar";
 import { Container, ButtonName, ContainerTable, ButtonContainer } from "./index.styled";
 import ButtonStyled from "../../components/ButtonStyled";
@@ -6,8 +6,10 @@ import CustomTable from "../../components/CustomTable";
 import ModalAdicionarTurma from "./ModalAdicionarTurma";
 import axios from "axios";
 import config from "../../config/constants";
+import AuthContext from "../../config/context/auth";
 
 const ListagemTurmas = (props) => {
+  const { usuario } = useContext(AuthContext);
   const [ turmas, setTurmas ] = useState([]);
   const [ loading, setLoading ] = useState(true);
   const [ renderAdicionarTurma, setRenderAdicionarTurma ] = useState(false);
@@ -36,7 +38,12 @@ const ListagemTurmas = (props) => {
   
   const obterTurmas = async () => {
     const url = config.DOMAIN_URL + "/turmas";
-    const { data } = await axios.get(url);
+    const header = {
+      headers: {
+        'Authorization': usuario.token
+      }
+    };
+    const { data } = await axios.get(url, header);
     setTurmas(data.data);
     setLoading(false);
   };
