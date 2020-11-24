@@ -4,9 +4,10 @@ import { TDBody, TRBody, ContainerActionColumn, ActionColumn } from "./index.sty
 const BodyContent = ({ headers, content, actionColumn }) => {
 
   const renderItem = (item) => {
-    const { formatterValue } = headers[item];
-    const itemFormatted = formatterValue ? formatterValue(content[item]) : null;
-    return itemFormatted || content[item];
+    const { formatterValue, nestedProperty } = headers[item];
+    const correctItem = nestedProperty ? content[item][nestedProperty] : content[item];
+    const itemFormatted = formatterValue ? formatterValue(correctItem) : null;
+    return itemFormatted || correctItem;
   };
 
   const renderMenu = () => {
