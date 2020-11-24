@@ -2,7 +2,7 @@
 
 Projeto frontend da matéria  _Fábrica de Software_  na disciplina  _Desafios da Tecnologia e Inovação_  do curso de _Ciência da Computação_ na faculdade [IMED](https://www.imed.edu.br/).
 
-A aplicação pode ser encontrada neste link [link](https://teu-futuro-imed.vercel.app).
+A aplicação pode ser encontrada neste [link](https://teu-futuro-imed.vercel.app).
 
 ---
 ## Principais tecnologias utilizadas
@@ -14,6 +14,7 @@ As principais tecnologias utilizadas foram:
 - [React Select](https://www.npmjs.com/package/react-select)
 - [React Text Mask](https://www.npmjs.com/package/react-text-mask)
 - [Text mask addons](https://www.npmjs.com/package/text-mask-addons)
+- [Vercel](https://vercel.com/)
 
 ## Requerimentos
 
