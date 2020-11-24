@@ -3,11 +3,14 @@ import CustomTable from "../../../components/CustomTable";
 import config from "../../../config/constants";
 import axios from "axios";
 import AuthContext from "../../../config/context/auth";
+import ButtonLinkStyled from "../../../components/Link";
+import ModalInclusaoAluno from "./ModalAdicaoAluno";
 
 const ListagemAlunos = (props) => {
   const { usuario } = useContext(AuthContext);
-  const [alunos, setAlunos] = useState([]);
+  const [ alunos, setAlunos] = useState([]);
   const [ loading, setLoading ] = useState(true);
+  const [ renderModalInclusaoAluno, setRenderModalInclusaoAluno ] = useState(false);
   const headers = {
     nome: {
       title: "Nome",
@@ -59,6 +62,22 @@ const ListagemAlunos = (props) => {
         headers={headers}
         data={alunos}
         msgEmptyBody={"Ainda não existem alunos cadastrados."}
+      />
+    }
+    <ButtonLinkStyled
+      title={"+ Clique para adicionar um novo aluno."}
+      onClick={() => setRenderModalInclusaoAluno(true)}
+    />
+    {
+      renderModalInclusaoAluno &&
+      <ModalInclusaoAluno
+        turmaId={props.turmaId}
+        onClose={() => setRenderModalInclusaoAluno(false)}
+        onSave={() => {
+          setLoading(true);
+          setRenderModalInclusaoAluno(false);
+          obterAlunos();
+        }}
       />
     }
     </>

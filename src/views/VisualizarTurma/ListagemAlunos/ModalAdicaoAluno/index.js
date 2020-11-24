@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import CustomModal from "../../../../components/CustomModal";
 import { Container, ContainerButton, ContainerForms } from "./index.styled";
 import InputStyled from "../../../../components/TextInput";
@@ -6,9 +6,11 @@ import SelectInput from "../../../../components/SelectInput";
 import config from "../../../../config/constants";
 import axios from "axios";
 import ButtonStyled from "../../../../components/ButtonStyled";
+import AuthContext from "../../../../config/context/auth";
 
 
 const ModalInclusaoAluno = (props) => {
+  const { usuario } = useContext(AuthContext);
   const [inputsTexto, setInputsTexto] = useState({
     nome: {
       titulo: "Nome*",
@@ -44,7 +46,12 @@ const ModalInclusaoAluno = (props) => {
 
   const obtemEscolas = async () => {
     const url = config.DOMAIN_URL + "/escolas";
-    const { data } = await axios.get(url);
+    const header = {
+      headers: {
+        'Authorization': usuario.token
+      }
+    };
+    const { data } = await axios.get(url, header);
     const escolas = data.data.map(escola => ({
       label: escola.nome,
       value: escola,
@@ -61,7 +68,12 @@ const ModalInclusaoAluno = (props) => {
 
   const obtemSponsors = async () => {
     const url = config.DOMAIN_URL + "/sponsors";
-    const { data } = await axios.get(url);
+    const header = {
+      headers: {
+        'Authorization': usuario.token
+      }
+    };
+    const { data } = await axios.get(url, header);
     const sponsors = data.data.map(sponsor => ({
       label: sponsor.nome,
       value: sponsor,
@@ -78,7 +90,12 @@ const ModalInclusaoAluno = (props) => {
 
   const obtemAnoEscolar = async () => {
     const url = config.DOMAIN_URL + "/anos-ensino-medio";
-    const { data } = await axios.get(url);
+    const header = {
+      headers: {
+        'Authorization': usuario.token
+      }
+    };
+    const { data } = await axios.get(url, header);
     const anosEnsino = data.data.map(ano => ({
       label: ano.ano,
       value: ano,
@@ -126,14 +143,16 @@ const ModalInclusaoAluno = (props) => {
       ano_ensino_medio: inputsSelect.anoEnsino.value.value,
       escola: inputsSelect.escola.value.value
     };
-    debugger;
     const url = config.DOMAIN_URL + `/turma/${props.turmaId}/aluno`;
+    const header = {
+      headers: {
+        'Authorization': usuario.token
+      }
+    };
 
-    axios.post(url, objectToSend);
+    axios.post(url, objectToSend, header);
 
-    props.onClose();
-
-    window.location.reload();
+    props.onSave && props.onSave();
   };
 
   useEffect(() => {
@@ -146,7 +165,6 @@ const ModalInclusaoAluno = (props) => {
     (inputsTexto.nome.valor &&
       inputsTexto.sobrenome.valor &&
      inputsTexto.email.valor &&
-     inputsTexto.celular.valor &&
      inputsSelect.escola.value &&
      inputsSelect.sponsor.value &&
      inputsSelect.anoEnsino.value)

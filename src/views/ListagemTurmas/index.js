@@ -7,6 +7,7 @@ import ModalAdicionarTurma from "./ModalAdicionarTurma";
 import axios from "axios";
 import config from "../../config/constants";
 import AuthContext from "../../config/context/auth";
+import { withRouter } from "react-router-dom";
 
 const ListagemTurmas = (props) => {
   const { usuario } = useContext(AuthContext);
@@ -79,11 +80,17 @@ const ListagemTurmas = (props) => {
       {
         renderAdicionarTurma &&
         <ModalAdicionarTurma
+          history={props.history}
           onClose={() => setRenderAdicionarTurma(false)}
+          onSave={() => {
+            setLoading(true);
+            setRenderAdicionarTurma(false);
+            obterTurmas();
+          }}
         />
       }
     </>
   );
 };
 
-export default ListagemTurmas;
+export default withRouter(ListagemTurmas);

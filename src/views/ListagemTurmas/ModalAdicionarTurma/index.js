@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {Container, ContainerButton} from "./index.styled"; 
 import CustomModal from "../../../components/CustomModal";
 import InputStyled from "../../../components/TextInput";
@@ -6,9 +6,10 @@ import SelectInput from "../../../components/SelectInput";
 import axios from "axios";
 import config from "../../../config/constants";
 import ButtonStyled from "../../../components/ButtonStyled";
+import AuthContext from "../../../config/context/auth";
 
 const ModalAdicionarTurma = (props) => {
-  
+  const { usuario } = useContext(AuthContext);
   const [inputsTexto, setInputsTexto] = useState({
     nome: {
       titulo: "Nome*",
@@ -35,7 +36,12 @@ const ModalAdicionarTurma = (props) => {
 
   const obterProfessores = async () => {
     const url = config.DOMAIN_URL + "/professores";
-    const { data } = await axios.get(url);
+    const header = {
+      headers: {
+        'Authorization': usuario.token
+      }
+    };
+    const { data } = await axios.get(url, header);
     const professores = data.data.map(professor => ({
       label: professor.nome,
       value: professor,
@@ -72,12 +78,14 @@ const ModalAdicionarTurma = (props) => {
       data_fim: inputsTexto.dataFim.valor
     };
     const url = config.DOMAIN_URL + "/turma";
+    const header = {
+      headers: {
+        'Authorization': usuario.token
+      }
+    };
+    axios.post(url, objectToSend, header);
 
-    axios.post(url, objectToSend);
-
-    props.onClose();
-
-    window.location.reload();
+    props.onSave && props.onSave();
   };
 
   useEffect(() => {
