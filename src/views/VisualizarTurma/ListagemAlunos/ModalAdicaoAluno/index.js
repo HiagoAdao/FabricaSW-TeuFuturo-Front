@@ -11,6 +11,7 @@ import AuthContext from "../../../../config/context/auth";
 
 const ModalInclusaoAluno = (props) => {
   const { usuario } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true);
   const [inputsTexto, setInputsTexto] = useState({
     nome: {
       titulo: "Nome*",
@@ -160,6 +161,7 @@ const ModalInclusaoAluno = (props) => {
       await obtemEscolas();
       await obtemSponsors();
       await obtemAnoEscolar();
+      setLoading(false);
     }
 
     fetchFunction();
@@ -176,6 +178,36 @@ const ModalInclusaoAluno = (props) => {
      : setStatusBotao(true);
   }, [inputsSelect, inputsTexto]);
 
+
+  const renderForms = () => {
+    return (
+      <ContainerForms>
+        {
+          Object.keys(inputsTexto).map((item, i) => (
+            <InputStyled
+              key={i}
+              item={inputsTexto[item]}
+              size={"450px"}
+              onInputChange={(valor) => onHandleChangeInput(valor, item)}
+            />
+          ))
+        }
+        {
+          Object.keys(inputsSelect).map((item, i) => (
+            <SelectInput
+              key={i}
+              item={inputsSelect[item]}
+              size={"450px"}
+              onSelectOption={(event) =>
+                onSelect(item, {label: event.label, value: event.value})
+              }
+          />
+          ))
+        }
+      </ContainerForms>
+    );
+  };
+
   return (
     <>
       <CustomModal
@@ -185,30 +217,10 @@ const ModalInclusaoAluno = (props) => {
         width={"550px"}
       >
         <Container>
-          <ContainerForms>
-            {
-              Object.keys(inputsTexto).map((item, i) => (
-                <InputStyled
-                  key={i}
-                  item={inputsTexto[item]}
-                  size={"450px"}
-                  onInputChange={(valor) => onHandleChangeInput(valor, item)}
-                />
-              ))
-            }
-            {
-              Object.keys(inputsSelect).map((item, i) => (
-                <SelectInput
-                  key={i}
-                  item={inputsSelect[item]}
-                  size={"450px"}
-                  onSelectOption={(event) =>
-                    onSelect(item, {label: event.label, value: event.value})
-                  }
-              />
-              ))
-            }
-          </ContainerForms>
+          {
+            !loading ? renderForms() : <></>
+          }
+          
           <ContainerButton>
             <ButtonStyled size={{ width: "340px", height: "40px" }} disabled={statusBotao} onClick={salvarAluno}>
               Cadastrar aluno
