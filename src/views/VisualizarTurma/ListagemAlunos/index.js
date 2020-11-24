@@ -64,15 +64,20 @@ const ListagemAlunos = (props) => {
   };
 
   const obterAlunos = async () => {
-    const url = config.DOMAIN_URL + "/turma/" + props.turmaId + "/alunos";
-    const header = {
-      headers: {
-        'Authorization': usuario.token
-      }
-    };
-    const { data } = await axios.get(url, header);
-    setAlunos(data.data);
-    setLoading(false);
+    try {
+      const url = config.DOMAIN_URL + "/turma/" + props.turmaId + "/alunos";
+      const header = {
+        headers: {
+          'Authorization': usuario.token
+        }
+      };
+      const { data } = await axios.get(url, header);
+      setAlunos(data.data);
+    } catch (error){
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useLayoutEffect(() => {

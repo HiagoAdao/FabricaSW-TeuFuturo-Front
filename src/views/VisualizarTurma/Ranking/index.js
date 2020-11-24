@@ -46,9 +46,10 @@ const Ranking = (props) => {
       };
       const { data } = await axios.get(url, params);
       setRanking(data.data);
-      setLoading(false);
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 

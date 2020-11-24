@@ -158,10 +158,15 @@ const ModalInclusaoAluno = (props) => {
 
   useLayoutEffect(() => {
     async function fetchFunction() {
-      await obtemEscolas();
-      await obtemSponsors();
-      await obtemAnoEscolar();
-      setLoading(false);
+      try {
+        await obtemEscolas();
+        await obtemSponsors();
+        await obtemAnoEscolar();
+      } catch (err){
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
     }
 
     fetchFunction();
