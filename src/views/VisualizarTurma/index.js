@@ -50,7 +50,6 @@ const VisualizarTurma = (props) => {
           <ContainerAccordions>
             <Ranking
               dataUltimaAtualizacao={dadosTurma.data_atualizacao_ranking}
-              reload={obterDataUltimaAtualizacao}
               turmaId={__TURMA_ID}
             />
           </ContainerAccordions>
