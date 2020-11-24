@@ -98,7 +98,7 @@ const Ranking = (props) => {
         {
           !!(ranking && ranking.length) &&
           <UltimaAtualizacao>
-            Última atualização: {props.dataUltimaAtualizacao || dataAtualFormatada()}
+            Última atualização: {props.dataUltimaAtualizacao || dataAtualFormatada()}.
           </UltimaAtualizacao>
         }
         {
