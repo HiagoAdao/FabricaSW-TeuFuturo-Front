@@ -6,12 +6,13 @@ import CustomTable from "../../../components/CustomTable";
 import axios from "axios";
 import config from "../../../config/constants";
 import AuthContext from "../../../config/context/auth";
-import  { Container, ContainerButton } from "./index.styled";
+import  { Container, ContainerButton, UltimaAtualizacao } from "./index.styled";
 
 const Ranking = (props) => {
   const { usuario } = useContext(AuthContext);
   const [ loading, setLoading ] = useState(true);
   const [ ranking, setRanking ] = useState([]);
+  const [ dataUltimaAtualizacao, setDataUltimaAtualizacao ] = useState("");
 
   const headers = {
     posicao: {
@@ -30,6 +31,21 @@ const Ranking = (props) => {
     }
   };
 
+  const obterDataUltimaAtualizacao = async () => {
+    try {
+      const url = `${config.DOMAIN_URL}/turma/${props.turmaId}`;
+      const params = {
+        headers: {
+          'Authorization': usuario.token
+        }
+      };
+      const { data } = await axios.get(url, params);
+      setDataUltimaAtualizacao(data.data.data_atualizacao_ranking);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const obterRanking = async () => {
     try {
       const url = `${config.DOMAIN_URL}/turma/${props.turmaId}/ranking-gamificacao`;
@@ -42,8 +58,9 @@ const Ranking = (props) => {
         headers: {
           'Authorization': usuario.token
         },
-        params: axiosParams()
+        params: !!(usuario.perfil.nome === "aluno") ? axiosParams() : null 
       };
+      await obterDataUltimaAtualizacao();
       const { data } = await axios.get(url, params);
       setRanking(data.data);
       setLoading(false);
@@ -83,6 +100,12 @@ const Ranking = (props) => {
             data={ranking}
             msgEmptyBody={"Ainda não existe ranking para esta turma."}
           />
+        }
+        {
+          !!(ranking && ranking.length) &&
+          <UltimaAtualizacao>
+            Última atualização: {dataUltimaAtualizacao}
+          </UltimaAtualizacao>
         }
         {
           !!(usuario.perfil.nome === "administrador") &&

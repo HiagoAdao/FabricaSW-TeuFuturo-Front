@@ -94,7 +94,9 @@ CustomTable.propTypes = {
 
 CustomTable.defaultProps = {
   actionColumn: {
-    color: () => {}
+    title: "",
+    color: () => {},
+    action: () => {},
   }
 };
 

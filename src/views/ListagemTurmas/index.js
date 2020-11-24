@@ -47,7 +47,7 @@ const ListagemTurmas = (props) => {
       headers: {
         'Authorization': usuario.token
       },
-      params: !!(usuario.perfil.nome === "administrador") ? null : axiosParams()
+      params: !!(usuario.perfil.nome === "professor") ? axiosParams() : null
     };
     const { data } = await axios.get(url, params);
     setTurmas(data.data);
