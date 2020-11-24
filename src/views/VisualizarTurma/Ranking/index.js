@@ -66,7 +66,8 @@ const Ranking = (props) => {
     } catch (error) {
       console.error(error);
     } finally {
-      obterRanking();
+      props.reload &&
+      props.reload();
     }
   };
 
