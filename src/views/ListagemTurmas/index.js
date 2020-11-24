@@ -30,7 +30,7 @@ const ListagemTurmas = (props) => {
     color: "",
     action: (lineContent) => {
       console.log(lineContent);
-      props.history.push('/turma');
+      props.history.push(`/turma/${lineContent.id}`);
     }
   };
   

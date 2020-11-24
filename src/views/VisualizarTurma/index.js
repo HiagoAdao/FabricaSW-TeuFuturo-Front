@@ -1,13 +1,14 @@
 import AccordionSection from "../../components/AccordionSection";
 import NavBar from "../../components/NavBar";
-import { Container, Title } from "./index.styled";
-import { Colors } from "../../theme/colors";
+import { Container} from "./index.styled";
+import ButtonLinkStyled from "../../components/Link";
+import ListagemAlunos from "./ListagemAlunos";
+import React, { useState } from "react";
+import ModalInclusaoAluno from "./ListagemAlunos/ModalAdicaoAluno";
 
 const VisualizarTurma = (props) => {
-  const handleClick = () => {
-    props.history.push('/login')
-    console.log('teste');
-  };
+  const turmaId = window.location.pathname.split("/").pop();
+  const [renderModalInclusaoAluno, setRenderModalInclusaoAluno] = useState(false);
 
   return (
     <>
@@ -15,14 +16,28 @@ const VisualizarTurma = (props) => {
       <Container>
         <>
           <AccordionSection title={"Alunos"}>
-
-            <Title>+ Clique para adicionar um novo aluno.</Title>
+            <ListagemAlunos turmaId={turmaId}/>
+            <ButtonLinkStyled
+              title={"+ Clique para adicionar um novo aluno."}
+              onClick={() => setRenderModalInclusaoAluno(true)}
+            />
+            {
+              renderModalInclusaoAluno &&
+              <ModalInclusaoAluno
+                turmaId={turmaId}
+                onClose={() => setRenderModalInclusaoAluno(false)}
+              />
+            }
           </AccordionSection>
           <AccordionSection title={"Atividades"}>
-            <Title>+ Clique para adicionar uma nova atividade.</Title>
+            <ButtonLinkStyled
+              title={"+ Clique para adicionar uma nova atividade."}
+            />
           </AccordionSection>
           <AccordionSection title={"Ranking de gamificação"}>
-            <Title>+ Clique para recalcular ranking.</Title>
+            <ButtonLinkStyled
+              title={"+ Clique para recalcular ranking."}
+            />
           </AccordionSection>
         </>
       </Container>

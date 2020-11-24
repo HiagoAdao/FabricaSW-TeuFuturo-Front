@@ -123,7 +123,7 @@ const ModalAdicionarTurma = (props) => {
         />
         <ContainerButton>
           <ButtonStyled disabled={buttonStatus} size={{ width: "340px", height: "40px" }} onClick={salvaTurma}>
-            Cadastrar Turma
+            Cadastrar turma
           </ButtonStyled>
         </ContainerButton>
       </Container>
