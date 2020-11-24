@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import ButtonStyled from "../../components/ButtonStyled";
 import TextInput from "../../components/TextInput";
@@ -10,8 +10,14 @@ import {
 } from "./index.styled";
 import LogoTf from "../../assets/logo-teu-futuro.svg";
 import ImageTf from "../../assets/logo-teu-futuro2.svg";
+import axios from "axios";
+import config from "../../config/constants";
+import AuthContext from "../../config/context/auth";
+import jwt from "jwt-decode";
 
 const Login = (props) => {
+  const { setUsuario } = useContext(AuthContext);
+
   const [ userInput, setUserInput ] = useState({
     titulo: "Usuário",
     valor: null,
@@ -54,16 +60,45 @@ const Login = (props) => {
     return false;
   };
 
-  const handleLogin = () => {
+  const efetuarLogin = async (credenciais) => {
+    try {
+      const res = await axios.post(
+        `${config.DOMAIN_URL}/login`,
+        {},
+        { auth: credenciais }
+      );
+      if(res.data.status !== "success") return false;
+      return res.data.data;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  }
+
+  const handleLogin = async () => {
     const usuario = userInput.valor;
     const senha = passwordInput.valor;
 
     const hasInvalidations = checkInvalidations();
     if (hasInvalidations) return;
 
-    (usuario === "admin" && senha === "admin") 
-      ? props.history.push("/turmas")
-      : setErroLogin(true);
+    const tokenUsuario = await efetuarLogin({ username: usuario, password: senha });
+    if (tokenUsuario) {
+      const dadosUsuario = jwt(tokenUsuario);
+      const redirectPerfis = {
+        administrador: "/turmas",
+        aluno: `/turma/${dadosUsuario.turma_id}`,
+        professor: "/turmas",
+      };
+
+      setUsuario({
+        ...dadosUsuario,
+        token: tokenUsuario
+      });
+      props.history.push(redirectPerfis[dadosUsuario.perfil.nome]);
+      return;
+    }
+    setErroLogin(true);
   };
 
   return (

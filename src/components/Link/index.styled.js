@@ -3,7 +3,7 @@ import { Sizes } from "../../theme/sizes";
 import { Colors } from "../../theme/colors";
 
 export const StyledButtonLink = styled.button`
-  color: ${Colors.lightPrimary};
+  color: ${Colors.primary};
   font-size: ${Sizes.medium};
   line-height: 24px;
   font-style: normal;
@@ -14,6 +14,6 @@ export const StyledButtonLink = styled.button`
   cursor: pointer;
 
   &:hover{
-    text-decoration: underline ${Colors.lightPrimary};;
+    text-decoration: underline ${Colors.primary};;
   }
 `;

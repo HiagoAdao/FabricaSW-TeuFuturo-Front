@@ -22,7 +22,7 @@ const AccordionSection = (props) => {
             </CustomText>
           </ContainerSummary>
         </summary>
-        <ContainerChildren>
+        <ContainerChildren onClick={() => setOpenAccordion(prevState => !prevState)}>
           { props.children }
         </ContainerChildren>
       </Details>

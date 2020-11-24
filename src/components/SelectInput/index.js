@@ -6,7 +6,7 @@ import { Colors } from "../../theme/colors";
 import iconDropDown from "../../assets/icons/icon-drop-down.svg";
 import PropTypes from "prop-types";
 
-const InputSelectStyled = ({item, onSelectOption, disabled, size}) => {
+const InputSelectStyled = ({item, onSelectOption, disabled, size, isMultiple}) => {
 
   const customStyles = {
     indicatorSeparator: () => ({
@@ -69,6 +69,10 @@ const InputSelectStyled = ({item, onSelectOption, disabled, size}) => {
     onSelectOption && onSelectOption(option);
   };
 
+  const onSelectMulti = (option) => {
+    onSelectOption && onSelectOption(option);
+  };
+
   const getAsyncOptions = async(event) => {
     return await item.loadOptions(event);
   };
@@ -93,7 +97,8 @@ const InputSelectStyled = ({item, onSelectOption, disabled, size}) => {
             components={{ DropdownIndicator: CustomDropDown }}
           />
         : <InputSelect
-            onChange={onSelect}
+            isMulti={isMultiple || false}
+            onChange={isMultiple ? onSelectMulti : onSelect}
             value={item.valor}
             options={item.options
               ? item.options.map(option => (
