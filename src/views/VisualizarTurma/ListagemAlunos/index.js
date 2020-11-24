@@ -5,6 +5,7 @@ import axios from "axios";
 import AuthContext from "../../../config/context/auth";
 import ButtonLinkStyled from "../../../components/Link";
 import ModalInclusaoAluno from "./ModalAdicaoAluno";
+import { Colors } from "../../../theme/colors";
 
 const ListagemAlunos = (props) => {
   const { usuario } = useContext(AuthContext);
@@ -37,6 +38,25 @@ const ListagemAlunos = (props) => {
       order: null
     }
   };
+  const actionColumn = {
+    title: "Inativar",
+    color: Colors.red,
+    action: (lineContent) => {
+      inativarAluno(lineContent);
+    }
+  };
+
+  const inativarAluno = async (lineContent) => {
+    const url = config.DOMAIN_URL + `/aluno/${lineContent.id}/inativar`;
+    const header = {
+      headers: {
+        'Authorization': usuario.token
+      }
+    };
+    
+    await axios.put(url, null, header);
+    obterAlunos();
+  };
 
   const obterAlunos = async () => {
     const url = config.DOMAIN_URL + "/turma/" + props.turmaId + "/alunos";
@@ -62,6 +82,7 @@ const ListagemAlunos = (props) => {
         headers={headers}
         data={alunos}
         msgEmptyBody={"Ainda não existem alunos cadastrados."}
+        actionColumn={actionColumn}
       />
     }
     <ButtonLinkStyled
